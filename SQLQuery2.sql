@@ -15,7 +15,7 @@ QUESTION 1) What is the average content of each nutrient and element per manufac
 select * 
 FROM PortfolioProject_2..Cereal;
 
-
+-- CTE for average nutrient content and ratings
 With nutrients_average_CTE (Mfr,Avg_Protein, Avg_Fat, Avg_Vitamin, Avg_Fiber, Avg_Carbohydrate, Avg_Sodium, Avg_Potass) AS (
 
 	-- Calcuate the averages of all the nutrients
@@ -43,6 +43,7 @@ With nutrients_average_CTE (Mfr,Avg_Protein, Avg_Fat, Avg_Vitamin, Avg_Fiber, Av
 		mfr
 )
 
+-- Join both the CTEs using the similar manufacturing name column in both the CTEs
 Select 
 	n.mfr,
 	n.avg_protein,
@@ -62,6 +63,7 @@ Order By
 /*
 QUESTION 2) What is the number of calories per ounce for each product?
 */
+-- Determines the average calories per manufacturer
 Select
 	mfr,
 	name,
@@ -78,6 +80,7 @@ Order By
 QUESTION 3) What is the average rating per manufacturer? Is it somehow connected to average nutrient content?
 
 */
+-- Determines the average brand rating
 Select
 	mfr,
 	name,
@@ -98,6 +101,8 @@ Order By
 /*
 QUESTION 4) Which manufacturer possesses the best shelf location?
 */
+
+-- Ranks the manufacturer based on average shelf location
 Select 
 	mfr,
 	avg(shelf) as avg_shelf
@@ -123,7 +128,7 @@ Select
 From
 	PortfolioProject_2..Cereal;
 
--- Find Top 5
+-- Find Top 5 cereals with the highest protein, fat, and carb content
 Select Top 5
 	mfr,
 	name,
